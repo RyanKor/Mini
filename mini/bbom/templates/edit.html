@@ -1,10 +1,10 @@
 {% extends "thumbnails.html" %}
     {% block content %}
     <div>
-        <h4>뿜빠이 수정하기</h4>
+        <h3>뿜빠이 수정하기</h3>
         <form method="POST">{% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">BBOM!</button>
+            <button type="submit">BBOOM!</button>
         </form>
     </div>
     {% endblock %}
