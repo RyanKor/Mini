@@ -75,8 +75,8 @@ def detail(request, post_pk):
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    man_products = Product.objects.filter(gender='man')
-    woman_products = Product.objects.filter(gender='woman')
+    man_products = Post.objects.filter(gender='man')
+    woman_products = Post.objects.filter(gender='woman')
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
