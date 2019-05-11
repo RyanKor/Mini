@@ -33,6 +33,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length = 200, help_text = "제목을 입력하세요.")
     content = models.TextField()
+    img = models.FileField(null = True)
     author = models.CharField(max_length=50, default = "")
     category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
     menu = models.CharField(max_length=30, choices=CHOICES)

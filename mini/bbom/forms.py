@@ -10,7 +10,7 @@ class PostForms(forms.ModelForm):
     timeSet = forms.TimeField(label = '')
     class Meta:
          model = Post
-         fields = ['title', 'content', 'school', ]
+         fields = ['title', 'content', 'school', 'img',]
 
 #댓글 형성 Form
 class CommentForms(forms.ModelForm):
