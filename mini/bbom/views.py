@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import PostForms, CommentForms, UserForms
 from .models import Post, Comment
 from django.contrib import auth
@@ -24,7 +24,7 @@ def new(request):
 
 @login_required(login_url='/accounts/login/')
 def edit(request, post_pk):
-    posts = Post.objects.get(post_pk=post.pk)
+    post = Post.objects.get(post_pk=post.pk)
     if request.method == 'POST':
         form = PostForms(request.POST, request.FILES)
         post = form.save(commit=False)
@@ -46,15 +46,15 @@ def delete_comment(request, post_pk, comment_pk):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = UserForms(request.POST)
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
             auth.login(request, new_user)
             return redirect('home')
         else:
-            form = UserForm()
+            form = UserForms()
             error = "이미 존재하는 아이디입니다"
             return render(request, 'registration/signup.html', {'form':form, 'error':error})
     else:
-        form = UserForm()
+        form = UserForms()
         return render(request, 'registration/signup.html', {'form': form})
