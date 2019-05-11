@@ -1,12 +1,15 @@
 .login-form{
     display: flex;
-    width: 500px;
-    height: 500px;
-    border: 2px solid rgb(214, 213, 213);
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
+    background-color: #ffffff;
     margin: 0 auto;
-    padding: 150px 120px;
+    padding: 50px 10px;
     justify-content: center;
-    border-radius: 5%;
+    /* border-radius: 5%; */
 
 }
 
