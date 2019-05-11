@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForms, CommentForms, UserForms
 from .models import Post, Comment, Category
 from django.contrib import auth
@@ -79,9 +79,7 @@ def product_list(request, category_slug=None):
     woman_products = Post.objects.filter(gender='woman')
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
     return render(request,
-                  'shop/product/list.html',
+                  'list.html',
                   {'category': category,
-                   'categories': categories,
-                   'products': products})
+                   'categories': categories})
