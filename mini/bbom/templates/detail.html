@@ -27,7 +27,7 @@
             </div>
             <h5>{{ post.content }}</h5>
             <div class="buttons">
-                <a href="{% url 'thumbnails' %}"><button type="button" class="btn btn-outline-secondary">back</button></a>
+                <a href="#"><button type="button" class="btn btn-outline-secondary">back</button></a>
                 {% if user.is_authenticated and post.author == user.username %}
                 <a href="{% url 'edit' post.pk %}"><button type="button" class="btn btn-outline-secondary">edit</button></a>
                 <a href="{% url 'delete' post.pk %}"><button type="button" class="btn btn-outline-secondary">delete</button></a>

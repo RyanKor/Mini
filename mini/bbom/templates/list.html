@@ -1,4 +1,4 @@
-{% extends "home.html" %}
+{% extends "category-food.html" %}
 {% block content %}
 <ul>
     <li>
@@ -9,4 +9,10 @@
             <a href="{{c.get_absolute_url}}">{{c.name}}</a>
         </li>
     {% endfor %}
+    {% for p in products %}
+        <li>
+            <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
+        </li>
+    {% endfor %}
 </ul>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.shortcuts import reverse
 
 # Create your models here.
 class Category(models.Model):
@@ -25,12 +26,34 @@ class Post(models.Model):
 
     title = models.CharField(max_length = 200, help_text = "제목을 입력하세요.")
     content = models.TextField()
-    # img = models.FileField(null = None)
-    # timeSet = models.TimeField(default = timezone.now)
-    # author = models.CharField(max_length=50, default = "")
-    # category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
-    # gender = models.CharField(max_length=30, choices=CHOICES)
-  
+    author = models.CharField(max_length=50, default = "")
+    category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
+    gender = models.CharField(max_length=30, choices=CHOICES)
+    univ = (
+        ('KU', '고려대학교'),
+        ('Yonsei', '연세대학교'),
+        ('SeongShin', '성신여대'),
+    )
+
+    KUspot = (
+        ('KU', '고려대 CU'),
+        ('KU', '고려대 GS25'),
+        ('KU', '고려대 미니스톱'),
+    )
+    Yspot = (
+        ('Yonsei', '연세 CU'),
+        ('Yonsei', '연세 GS25'),
+        ('Yonsei', '연세 미니스톱'),
+    )
+    Sspot = (
+        ('SeongShin', '성신 CU'),
+        ('SeongShin', '성신 GS25'),
+        ('SeongShin', '성신 미니스톱'),
+    )
+    school = models.CharField(max_length=30, choices=univ)
+    kp = models.CharField(max_length = 30, choices = KUspot)
+    yp = models.CharField(max_length = 30, choices = Yspot)
+    sp = models.CharField(max_length = 30, choices = Sspot)
     def __str__ (self):
         return self.title
 
@@ -41,4 +64,3 @@ class Comment(models.Model):
     # photo = models.FileField(null = True)
     def __str__(self):
         return self.content
-

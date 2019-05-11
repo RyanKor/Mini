@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 from bbom import views
 
 urlpatterns = [
@@ -26,5 +27,7 @@ urlpatterns = [
     path('delete/<int:post_pk>/', views.delete, name='delete'),
     path('detail/<int:post_pk>/<int:comment_pk>', views.delete_comment, name='delete_comment'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/signup', views.signup, name='signup'),
+    url(r'^$', views.product_list, name='product_list'),
+    url(r'^(?P<category_slug>[-\w]+)/$', views.product_list, name='product_list_by_category')
 ]
