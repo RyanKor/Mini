@@ -8,6 +8,14 @@ class PostForms(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'category', 'menu', 'univ', 'summary']
+        widgets = {
+            'title' : forms.TextInput(attrs{'placeholder':'입력해주세요'}),
+        }
+        labels = {
+            'title' : '',
+            'content' : '',
+            'category' : '',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

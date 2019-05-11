@@ -14,7 +14,6 @@
             </div>
             <h5 style="color:gray;">{{ post.author }}</h5>
             <div class="time">
-                <h5 style="color:gray;">{{ post.timeset }}</h5>
             </div>
         </div>
 
@@ -24,10 +23,10 @@
             </div>
             <h5>{{ post.content }}</h5>
             <div class="buttons">
-                <a href="#"><button type="button" class="btn btn-outline-secondary">back</button></a>
+                <a href="#"><button type="button" class="button">돌아가기</button></a>
                 {% if user.is_authenticated and post.author == user.username %}
-                <a href="{% url 'edit' post.pk %}"><button type="button" class="btn btn-outline-secondary">edit</button></a>
-                <a href="{% url 'delete' post.pk %}"><button type="button" class="btn btn-outline-secondary">delete</button></a>
+                <a href="{% url 'edit' post.pk %}"><button type="button" class="button">수정하기</button></a>
+                <a href="{% url 'delete' post.pk %}"><button type="button" class="button">삭제하기</button></a>
                 {% endif %}
             </div>    
         </div>  
@@ -41,7 +40,9 @@
             {% for comment in post.comments.all %}
                 <li>{{ comment.content }}
                     {% if user.is_authenticated and comment.author == user.username %}
-                    <a href="{% url 'delete_comment' post.pk comment.pk %}"><button type="button">삭제</button></a>
+                    <a href="{% url 'delete_comment' post.pk comment.pk %}">
+                        <img src="https://www.flaticon.com/free-icon/garbage_126468#term=trash%20can&page=1&position=2" width="5%" height="5%" />
+                    </a>
                     {% endif %}
                 </li>   
             {% endfor %}
@@ -49,10 +50,10 @@
         </div>
         
         <div class="comment">
-            <form method="POST">
+            <form method="POST" class="inputcomment">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-outline-secondary">comment</button>
+                <button type="submit" class="button">올리기</button>
             </form>
         </div>
     </div>

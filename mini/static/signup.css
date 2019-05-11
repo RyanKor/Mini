@@ -1,0 +1,26 @@
+.signup-form{
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 50px 10px;
+    justify-content: center;
+}
+
+.signup-title{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+
+}
+.signup-content{
+    padding: 30px 0px;
+    text-align: center;
+    margin: 0 auto;
+    
+}
