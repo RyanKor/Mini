@@ -9,13 +9,17 @@
             <a href="{{c.get_absolute_url}}">{{c.name}}</a>
         </li>
     {% endfor %}
+    {% if request.get_full_path == "/Food/" %}
+        {% for m in menus %}
+            <li>
+                <a href="{{m.get_absolute_url}}">{{m.name}}</a>
+        {% endfor %}
+    {% endif %}
     {% for p in products %}
         <li>
             <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
         </li>
     {% endfor %}
-    {% for m in posts %}
-    {% if m.menu == pizza %}
-    
+
 </ul>
 {% endblock %}
