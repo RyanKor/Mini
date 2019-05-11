@@ -14,5 +14,8 @@
             <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
         </li>
     {% endfor %}
+    {% for m in posts %}
+    {% if m.menu == pizza %}
+    
 </ul>
 {% endblock %}

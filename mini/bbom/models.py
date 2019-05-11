@@ -20,15 +20,22 @@ class Category(models.Model):
 
 class Post(models.Model):
     CHOICES = (
-    ('man', 'man'),
-    ('woman', 'woman'),
+    ('pizza', '피자'),
+    ('chicken', '치킨'),
+    ('bossam', '보쌈'),
+    ('tteok', '떡볶이'),
+    ('jok', '족발'),
+    ('dak', '닭발'),
+    ('sap', '삽겹살'),
+    ('mara', '마라샹궈'),
+    ('jjim', '찜닭'),
     )
 
     title = models.CharField(max_length = 200, help_text = "제목을 입력하세요.")
     content = models.TextField()
     author = models.CharField(max_length=50, default = "")
     category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
-    gender = models.CharField(max_length=30, choices=CHOICES)
+    menu = models.CharField(max_length=30, choices=CHOICES)
     univ = (
         ('KU', '고려대학교'),
         ('Yonsei', '연세대학교'),
