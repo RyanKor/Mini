@@ -1,14 +1,14 @@
-{% extends "category_food.html" %}
+{% extends "category-food.html" %}
 {% block content %}
 <div class="login">
     <h2>로그인</h2>
 </div>
 
 <div class="login-form">
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="로그인">
-</form>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="로그인">
+    </form>
 </div>
 {% endblock %}
