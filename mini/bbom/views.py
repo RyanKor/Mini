@@ -79,7 +79,9 @@ def product_list(request, category_slug=None):
     woman_products = Post.objects.filter(gender='woman')
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
+        posts = Post.objects.all()
+        products = Post.objects.filter(category=category)
     return render(request,
                   'list.html',
                   {'category': category,
-                   'categories': categories})
+                   'categories': categories, 'products':products})
