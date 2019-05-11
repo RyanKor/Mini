@@ -1,0 +1,41 @@
+{% extends "thumbnails.html" %}
+{% block content %}
+
+    
+        <h5>{{ post.title }}</h5>
+
+        <h5>{{ post.author }}</h5>
+
+        <h5>{{ post.timeset }}</h5>
+
+        <h5><img src="{{ post.img.url }}" width="20%" height="20%"/></h5>
+
+        <h5>{{ post.content }}</h5>
+    
+
+    <a href="{% url 'thumbnails' %}"><button type="button">back</button></a>
+    {% if user.is_authenticated and post.author == user.username %}
+    <a href="{% url 'edit' post.pk %}"><button type="button">edit</button></a>
+    <a href="{% url 'delete' post.pk %}"><button type="button">delete</button></a>
+    {% endif %}
+
+
+    <h3>댓글</h3>
+    <ul>
+        {% for comment in post.comments.all %}
+            <li>{{ comment.content }}<a href="{% url 'delete_comment' post.pk comment.pk %}">
+                {% if user.is_authenticated and comment.author == user.username %}
+                <button type="button">삭제</button></a></li>
+                {% endif %}
+        {% endfor %}
+    </ul>
+
+
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">comment</button>
+    </form>
+
+{% endblock %}
