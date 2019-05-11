@@ -1,0 +1,19 @@
+{% extends "category-food.html" %}
+{% block content %}
+<ul>
+    <li>
+        <a href="{% url 'menu_list' %}">menu</a>
+    </li>
+    {% for c in menus %}
+        <li>
+            <a href="{{c.get_absolute_url}}">{{c.name}}</a>
+        </li>
+    {% endfor %}
+    {% for p in menulist %}
+        <li>
+            <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
+        </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

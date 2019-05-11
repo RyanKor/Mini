@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class PostForms(forms.ModelForm):
     class Meta:
          model = Post
-         fields = ['title', 'content', 'school', 'img', 'category', 'menu']
+         fields = ['title', 'content', 'school', 'category', 'menu']
          widget = {
              forms.TextInput(attrs = {'placeholder':'글을 입력하세요'}),
          }

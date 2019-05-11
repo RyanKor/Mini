@@ -30,5 +30,6 @@ urlpatterns = [
     path('accounts/signup', views.signup, name='signup'),
     url(r'^$', views.product_list, name='product_list'),
     url(r'^(?P<category_slug>[-\w]+)/$', views.product_list, name='product_list_by_category'),
-    url(r'^(?P<category_slug>[-\w]+)/$', views.product_list, name='product_list_by_category')
+    url(r'^Food/(?P<menu_slug>[-\w]+)/$', views.menu_list, name='product_list_by_menu'),
+    url(r'^Food/$', views.menu_list, name='menu_list'),
 ]

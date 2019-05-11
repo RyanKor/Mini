@@ -18,25 +18,28 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('product_list_by_category', args=[self.slug])
 
-class Post(models.Model):
-    CHOICES = (
-    ('pizza', '피자'),
-    ('chicken', '치킨'),
-    ('bossam', '보쌈'),
-    ('tteok', '떡볶이'),
-    ('jok', '족발'),
-    ('dak', '닭발'),
-    ('sap', '삽겹살'),
-    ('mara', '마라샹궈'),
-    ('jjim', '찜닭'),
-    )
+class Menu(models.Model):
+    name = models.CharField(max_length=20, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True)
 
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'menu'
+        verbose_name_plural = 'menus'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('product_list_by_menu', args=[self.slug])
+
+class Post(models.Model):
     title = models.CharField(max_length = 200, help_text = "제목을 입력하세요.")
     content = models.TextField()
-    img = models.FileField(null = True)
+    img = models.FileField(null = True, blank = True)
     author = models.CharField(max_length=50, default = "")
     category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
-    menu = models.CharField(max_length=30, choices=CHOICES)
+    menu = models.ForeignKey(Menu, on_delete= models.CASCADE, related_name='menulist')
     univ = (
         ('KU', '고려대학교'),
         ('Yonsei', '연세대학교'),
