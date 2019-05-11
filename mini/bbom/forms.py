@@ -42,3 +42,6 @@ class UserForms(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
+
+class SearchForm(forms.Form):
+     word = forms.CharField(label='Search Word')

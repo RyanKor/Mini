@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PostForms, CommentForms, UserForms
+from .forms import PostForms, CommentForms, UserForms, SearchForm
 from .models import Post, Comment, Category, Menu, Univ, Summary
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+###
+from django.db.models import Q
+from django.views.generic.edit import FormView
 # Create your views here.
 def home(request):
     posts = Post.objects.all()
@@ -105,3 +107,19 @@ def load_summaries(request, univ_id=None):
     univ_id = request.GET.get('univ')
     summaries = Summary.objects.filter(univ_id=univ_id)
     return render(request, 'summaries_dropdown_list_options.html', {'summaries': summaries})
+
+
+class SearchFormView(FormView):
+    form_class = SearchForm
+    template_name = 'search.html'
+    def form_valid(self,form): # post method로 값이 전달 됬을 경우
+        word = '%s' %self.request.POST['word'] # 검색어 
+        post_list = Post.objects.filter( 
+            Q(title__icontains=word) | Q(content__icontains=word) | Q(univ__name__contains=word) # Q 객체를 사용해서 검색한다.
+        # title,context 칼럼에 대소문자를 구분하지 않고 단어가 포함되어있는지 (icontains) 검사
+        ).distinct()
+        context = {}
+        context['object_list'] = post_list
+        # 검색된 결과를 컨텍스트 변수에 담는다. 
+        context['search_word']= word # 검색어를 컨텍스트 변수에 담는다. 
+        return render(self.request, self.template_name, context)
