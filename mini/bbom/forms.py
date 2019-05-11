@@ -2,8 +2,6 @@ from django import forms
 from .models import Post, Comment
 from django.contrib.auth.models import User
 
-
-
 #게시글 형성 Form
 class PostForms(forms.modelForm):
     title = forms.CharField(widget = forms.Textarea(attrs = {'placeholder': '글을 입력하세요'}), label = '')
@@ -20,7 +18,6 @@ class CommentForms(forms.modelForm):
     class Meta:
         model = Comment
         field = ['content',]
-
 
 #유저 정보를 저장하기 위한 Form
 class UserForms(forms.ModelForm):
