@@ -14,8 +14,6 @@ import os,json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-with open(os.path.join(BASE_DIR, 'mini/config/index.json')) as f:
-    secrets = json.loads(f.read())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -27,7 +25,6 @@ SECRET_KEY = 'j7n-nv9pt%+m41=%is!sqpyaj3z8(#s%kfqy+wo#bulz_&beln'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
