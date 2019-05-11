@@ -44,4 +44,4 @@ class UserForms(forms.ModelForm):
         fields = ('username', 'password',)
 
 class SearchForm(forms.Form):
-     word = forms.CharField(label='Search Word')
+     word = forms.CharField(label='')

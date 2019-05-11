@@ -8,10 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.views.generic.edit import FormView
 # Create your views here.
-def home(request):
-    posts = Post.objects.all()
-    return render(request, 'home.html', { 'posts':posts })
-
 @login_required(login_url='/accounts/login/')
 def new(request):
     if request.method == 'POST':
@@ -111,7 +107,7 @@ def load_summaries(request, univ_id=None):
 
 class SearchFormView(FormView):
     form_class = SearchForm
-    template_name = 'search.html'
+    template_name = 'home.html'
     def form_valid(self,form): # post method로 값이 전달 됬을 경우
         word = '%s' %self.request.POST['word'] # 검색어 
         post_list = Post.objects.filter( 

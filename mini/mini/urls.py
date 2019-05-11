@@ -21,7 +21,7 @@ from bbom.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', SearchFormView.as_view(), name='home'),
     path('new/', views.new, name='new'),
     path('detail/<int:post_pk>/', views.detail, name='detail'),
     path('edit/<int:post_pk>/', views.edit, name = 'edit'),

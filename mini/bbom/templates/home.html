@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- {% load staticfiles %} -->
+{% load staticfiles %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,10 +91,11 @@
                 <img class="logo" src="file:///Users/choijuwon/Desktop/bbom.png" alt="">
             </div>
             <!--  -->
-            <form action="" method="get">
-                <input type="text" name="q" value="{{ q }}">
-                <input type="submit" value="검색">
+            <form action="." method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }} <!-- form -->
             </form>
+           
             <!--  -->
             <div class="right">
                 <h6 class="right1"><a href="#">HOME</a></h6>
@@ -121,9 +122,19 @@
         <!-- //intro -->
     </div>
     
-
     <!-- bigcategory -->
     <div class="bigcategory">
+        {% if object_list %} 
+        {% for post in object_list %} 
+        <div class="category" style="position: relative; width: 400px;">
+            <div class="rectangle">
+                <a href="{% url 'detail' post.pk %}" style="color:black;">{{ post.title }}</a>
+            </div>
+        </div> 
+        {% endfor %} 
+        {% elif search_word %} 
+              Search Word {{ search_word }} Not Found!
+        {% else %}
         <!-- <a href=""> -->
             <div class="category">
                 <div class="rectangle">
@@ -171,5 +182,6 @@
         </div>
     </div>
     <!-- //bigcategroy -->
+    {% endif %}
 </body>
 </html>
