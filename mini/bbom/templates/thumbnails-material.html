@@ -10,9 +10,43 @@
             <h2>치킨</h2>
             <h6>혼자 사면 비싸고 많지만, 뿜빠이 한다면?</h6>
         </div>
+
+        <div class="menubar">
+            <ul>
+                <li>
+                    <a href="{% url 'product_list' %}">productlist</a>
+                </li>
+                {% for c in categories %}
+                    <li>
+                        <a href="{{c.get_absolute_url}}">{{c.name}}</a>
+                    </li>
+                {% endfor %}
+                {% if request.get_full_path == "/Food/" %}
+                    {% for m in menus %}
+                        <li>
+                            <a href="{{m.get_absolute_url}}">{{m.name}}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="contentlist">
+            <div class="contents">
+                {% for p in products %}
+                    <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
+                {% endfor %} 
+            </div>
+        </div>
+
+
+
+
+
+
         <!-- //category-intro -->
 
-        <div class="contents">
+        <!-- <div class="contents">
             <img src="#" alt="">
             <h5 class="times">방금전</h5>
             <h3 class="title">피자 같이 먹으실 분 구해요</h3>
@@ -137,5 +171,5 @@
                 #곧 마감 되어요
                 #혼자먹기 많아요
             </div>
-        </div>
+        </div> -->
     {% endblock %}

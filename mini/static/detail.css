@@ -12,7 +12,12 @@
     margin: 50px;
     padding: 30px;
     border-radius: 0.5%;
-    overflow: hidden;
+    width: 445px;
+    height: 622px;
+    object-fit: contain;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
+    background-color: #ffffff;
 }
 
 /* "게시물머리" */
@@ -35,7 +40,7 @@
 .content{
     padding: 10px;
     text-align: center;
-    
+    overflow: hidden;
 }
 
 .img{
@@ -50,6 +55,15 @@
     text-align: center;
 }
 
+.button{
+    width: 120px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
+    background-color: #ffffff;
+}
+
 /* "댓글전체" */
 .commentform{    
     margin: 50px;
@@ -58,15 +72,34 @@
     padding: 30px;
     border-radius: 0.5%;
     overflow: hidden;
+    width: 445px;
+    height: 622px;
+    object-fit: contain;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
+    background-color: #ffffff;
 }
 
 /* "댓글창" */
 .commentlist{
     border: 1px solid rgba(220, 220, 220, 0.822);
     margin: 10px;
+    padding: 30px;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
+    background-color: #ffffff;
 }
 
 /* "댓글남기기" */
 .comment{
     margin: 10px
+}
+
+/* 댓글남기는창 */
+.inputcomment{
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 1px rgba(183, 183, 183, 0.5);
 }
