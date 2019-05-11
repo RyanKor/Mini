@@ -44,8 +44,8 @@ def edit(request, post_pk):
         post.save()
         return redirect('detail', post.pk)
     else:
-        form = PostForms(instance = post)
-        return render(request, 'edit.html', { 'form':form })
+        form = PostForms(instance=post)
+        return render(request, 'edit.html', { 'form': form })
     
 def delete(request, post_pk):
     post = Post.objects.get(pk=post_pk)
