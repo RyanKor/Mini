@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import PostForms, CommentForms, UserForms
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -71,3 +71,17 @@ def detail(request, post_pk):
     else:
         form = CommentForms()
         return render(request, 'detail.html', { 'post' : post, 'form': form })
+
+def product_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    man_products = Product.objects.filter(gender='man')
+    woman_products = Product.objects.filter(gender='woman')
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+    return render(request,
+                  'shop/product/list.html',
+                  {'category': category,
+                   'categories': categories,
+                   'products': products})

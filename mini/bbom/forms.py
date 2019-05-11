@@ -3,7 +3,7 @@ from .models import Post, Comment
 from django.contrib.auth.models import User
 
 #게시글 형성 Form
-class PostForms(forms.modelForm):
+class PostForms(forms.ModelForm):
     title = forms.CharField(widget = forms.Textarea(attrs = {'placeholder': '글을 입력하세요'}), label = '')
     content = forms.CharField (label = '')
     img = forms.FileField(label = '')
@@ -13,7 +13,7 @@ class PostForms(forms.modelForm):
          fields = ['title', 'content', 'img', 'timeSet', ]
 
 #댓글 형성 Form
-class CommentForms(forms.modelForm):
+class CommentForms(forms.ModelForm):
     comment = forms.CharField (widget = forms.TextInput (attrs = {'placeholder': '댓글을 입력하세요.'}), label = '')
     class Meta:
         model = Comment

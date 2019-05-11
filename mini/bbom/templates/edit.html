@@ -1,10 +1,11 @@
-{% extends "thumbnails.html" %}
+{% extends "category_food.html" %}
     {% block content %}
     <div>
-        <h4>뿜빠이 수정하기</h4>
-        <form method="POST">{% csrf_token %}
+        <h3>뿜빠이 수정하기</h3>
+        <form method="POST">
+            {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">BBOM!</button>
+            <button type="submit" class="btn btn-outline-danger">BBOOM!</button>
         </form>
     </div>
     {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "home.html" %}
+{% block content %}
+<ul>
+    <li>
+        <a href="{% url 'product_list' %}">productlist</a>
+    </li>
+    {% for c in categories %}
+        <li>
+            <a href="{{c.get_absolute_url}}">{{c.name}}</a>
+        </li>
+    {% endfor %}
+</ul>

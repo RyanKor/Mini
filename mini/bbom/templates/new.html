@@ -1,11 +1,11 @@
-{% extends "thumbnails.html" %}
+{% extends "category_food.html" %}
     {% block content %}
     <div>
         <h4>새로운 뿜빠이</h4>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">BBOM!</button>
+            <button type="submit" class="btn btn-outline-danger">BBOOM!</button>
         </form>
     </div>
     {% endblock %}
