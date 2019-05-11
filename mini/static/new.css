@@ -1,0 +1,8 @@
+.alldisplay{
+    border: 1px solid rgba(220, 220, 220, 0.822);
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 0.5%;
+    width: 500px;
+    height: 700px;
+}

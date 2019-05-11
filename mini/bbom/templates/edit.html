@@ -1,7 +1,8 @@
 {% extends "category_food.html" %}
     {% block content %}
-    <div>
-        <h3>뿜빠이 수정하기</h3>
+    <link rel="stylesheet" type="text/css" href="{% static 'edit.css' %}">
+    <div class="alldisplay">
+        <h3 style="font-weight:bold">뿜빠이 수정하기</h3>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
