@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for summary in summaries %}
+<option value="{{ summary.pk }}">{{ summary.name }}</option>
+{% endfor %}

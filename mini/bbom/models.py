@@ -33,6 +33,19 @@ class Menu(models.Model):
     def get_absolute_url(self):
         return reverse('product_list_by_menu', args=[self.slug])
 
+class Univ(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return self.name
+
+class Summary(models.Model):
+    univ = models.ForeignKey(Univ, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     title = models.CharField(max_length = 200, help_text = "제목을 입력하세요.")
     content = models.TextField()
@@ -40,31 +53,9 @@ class Post(models.Model):
     author = models.CharField(max_length=50, default = "")
     category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
     menu = models.ForeignKey(Menu, on_delete= models.CASCADE, related_name='menulist')
-    univ = (
-        ('KU', '고려대학교'),
-        ('Yonsei', '연세대학교'),
-        ('SeongShin', '성신여대'),
-    )
+    univ = models.ForeignKey(Univ, on_delete= models.SET_NULL, null=True)
+    summary = models.ForeignKey(Summary, on_delete= models.SET_NULL, null=True)
 
-    KUspot = (
-        ('KU', '고려대 CU'),
-        ('KU', '고려대 GS25'),
-        ('KU', '고려대 미니스톱'),
-    )
-    Yspot = (
-        ('Yonsei', '연세 CU'),
-        ('Yonsei', '연세 GS25'),
-        ('Yonsei', '연세 미니스톱'),
-    )
-    Sspot = (
-        ('SeongShin', '성신 CU'),
-        ('SeongShin', '성신 GS25'),
-        ('SeongShin', '성신 미니스톱'),
-    )
-    school = models.CharField(max_length=30, choices=univ)
-    kp = models.CharField(max_length = 30, choices = KUspot)
-    yp = models.CharField(max_length = 30, choices = Yspot)
-    sp = models.CharField(max_length = 30, choices = Sspot)
     def __str__ (self):
         return self.title
 

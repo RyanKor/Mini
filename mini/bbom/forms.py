@@ -1,20 +1,26 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, Univ, Summary
 from django.contrib.auth.models import User
 
 #게시글 형성 Form
 class PostForms(forms.ModelForm):
+
     class Meta:
-         model = Post
-         fields = ['title', 'content', 'school', 'category', 'menu']
-         widget = {
-             forms.TextInput(attrs = {'placeholder':'글을 입력하세요'}),
-         }
-         labels = {
-             'content' : '',
-             'img': '',
-             'category' : '',
-         }
+        model = Post
+        fields = ['title', 'content', 'category', 'menu', 'univ', 'summary']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['summary'].queryset = Summary.objects.none()
+
+        if 'univ' in self.data:
+            try:
+                univ_id = int(self.data.get('univ'))
+                self.fields['summary'].queryset = Summary.objects.filter(univ_id=univ_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['summary'].queryset = self.instance.univ.summary_set.order_by('title')
 
 #댓글 형성 Form
 class CommentForms(forms.ModelForm):

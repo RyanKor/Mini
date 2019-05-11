@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForms, CommentForms, UserForms
-from .models import Post, Comment, Category, Menu
+from .models import Post, Comment, Category, Menu, Univ, Summary
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -100,3 +100,8 @@ def menu_list(request, menu_slug=None):
         menu = get_object_or_404(Menu, slug=menu_slug)
         menulist = Post.objects.filter(menu=menu)
     return render(request, 'list2.html', {'menu':menu, 'menus':menus, 'menulist':menulist})
+
+def load_summaries(request, univ_id=None):
+    univ_id = request.GET.get('univ')
+    summaries = Summary.objects.filter(univ_id=univ_id)
+    return render(request, 'summaries_dropdown_list_options.html', {'summaries': summaries})
