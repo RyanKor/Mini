@@ -9,9 +9,9 @@
             <a href="{{c.get_absolute_url}}">{{c.name}}</a>
         </li>
     {% endfor %}
-    {% for p in posts %}
+    {% for p in products %}
         <li>
-            <a href="{% url 'detail' post.pk %}">{{p.title}}</a>
+            <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
         </li>
     {% endfor %}
 </ul>

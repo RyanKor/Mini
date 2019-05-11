@@ -22,6 +22,19 @@ def new(request):
         form = PostForms()
         return render(request, 'new.html', { 'form':form })
 
+def detail(request, post_pk):
+    post = Post.objects.get(pk=post_pk)
+    if request.method == 'POST':
+        form = CommentForms(request.POST, request.FILES)
+        comment = form.save(commit=False)
+        comment.author = request.user.get_username()
+        comment.post = post
+        comment.save()
+        return redirect('detail', post.pk)
+    else:
+        form = CommentForms()
+        return render(request, 'detail.html', { 'post' : post, 'form': form })
+        
 @login_required(login_url='/accounts/login/')
 def edit(request, post_pk):
     post = Post.objects.get(pk=post_pk)
@@ -59,19 +72,6 @@ def signup(request):
         form = UserForms()
         return render(request, 'registration/signup.html', {'form': form})
 
-def detail(request, post_pk):
-    post = Post.objects.get(pk=post_pk)
-    if request.method == 'POST':
-        form = CommentForms(request.POST, request.FILES)
-        comment = form.save(commit=False)
-        comment.author = request.user.get_username()
-        comment.post = post
-        comment.save()
-        return redirect('detail', post.pk)
-    else:
-        form = CommentForms()
-        return render(request, 'detail.html', { 'post' : post, 'form': form })
-
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -79,9 +79,7 @@ def product_list(request, category_slug=None):
     woman_products = Post.objects.filter(gender='woman')
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        posts = Post.objects.all()
         products = Post.objects.filter(category=category)
-    return render(request,
-                  'list.html',
+    return render(request, 'list.html',
                   {'category': category,
                    'categories': categories, 'products':products})
