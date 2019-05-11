@@ -24,6 +24,3 @@ class UserForms(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
-    
-    # def __init__(self):
-    #     self.fields['username'].label = "사용자 이름"
