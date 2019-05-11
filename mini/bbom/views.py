@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForms, CommentForms, UserForms
-from .models import Post, Comment, Category
+from .models import Post, Comment, Category, Menu
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -75,11 +75,28 @@ def signup(request):
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    man_products = Post.objects.filter(gender='man')
-    woman_products = Post.objects.filter(gender='woman')
+    menus = Menu.objects.all()
+    # posts = Post.objects.all()
+    # pizza_products = Post.objects.filter(menu='pizza')
+    # chicken_products = Post.objects.filter(menu='chicken')
+    # bossam_products = Post.objects.filter(menu='bossam')
+    # tteok_products = Post.objects.filter(menu='tteok')
+    # jok_products = Post.objects.filter(menu='jok')
+    # dak_products = Post.objects.filter(menu='dak')
+    # sap_products = Post.objects.filter(menu='sap')
+    # mara_products = Post.objects.filter(menu='mara')
+    # jjim_products = Post.objects.filter(menu='jjim')
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = Post.objects.filter(category=category)
     return render(request, 'list.html',
                   {'category': category,
-                   'categories': categories, 'products':products})
+                   'categories': categories, 'products':products, 'menus':menus})
+
+def menu_list(request, menu_slug=None):
+    menu = None
+    menus = Menu.objects.all()
+    if menu_slug:
+        menu = get_object_or_404(Menu, slug=menu_slug)
+        menulist = Post.objects.filter(menu=menu)
+    return render(request, 'list2.html', {'menu':menu, 'menus':menus, 'menulist':menulist})

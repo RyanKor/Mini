@@ -4,13 +4,17 @@ from django.contrib.auth.models import User
 
 #게시글 형성 Form
 class PostForms(forms.ModelForm):
-    title = forms.CharField(widget = forms.Textarea(attrs = {'placeholder': '글을 입력하세요'}), label = '')
-    content = forms.CharField (label = '')
-    img = forms.FileField(label = '')
-    timeSet = forms.TimeField(label = '')
     class Meta:
          model = Post
-         fields = ['title', 'content', 'school',]
+         fields = ['title', 'content', 'school', 'category', 'menu']
+         widget = {
+             forms.TextInput(attrs = {'placeholder':'글을 입력하세요'}),
+         }
+         labels = {
+             'content' : '',
+             'img': '',
+             'category' : '',
+         }
 
 #댓글 형성 Form
 class CommentForms(forms.ModelForm):
