@@ -25,11 +25,11 @@ class Post(models.Model):
 
     title = models.CharField(max_length = 200, help_text = "제목을 입력하세요.")
     content = models.TextField()
-    # img = models.FileField(null = None)
-    # timeSet = models.TimeField(default = timezone.now)
-    # author = models.CharField(max_length=50, default = "")
-    # category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
-    # gender = models.CharField(max_length=30, choices=CHOICES)
+    img = models.FileField(null = None)
+    timeSet = models.TimeField(default = timezone.now)
+    author = models.CharField(max_length=50, default = "")
+    category = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='product')
+    gender = models.CharField(max_length=30, choices=CHOICES)
   
     def __str__ (self):
         return self.title
