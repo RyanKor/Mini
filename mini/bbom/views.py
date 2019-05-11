@@ -115,7 +115,7 @@ class SearchFormView(FormView):
     def form_valid(self,form): # post method로 값이 전달 됬을 경우
         word = '%s' %self.request.POST['word'] # 검색어 
         post_list = Post.objects.filter( 
-            Q(title__icontains=word) | Q(content__icontains=word) | Q(univ__name__contains=word) # Q 객체를 사용해서 검색한다.
+            Q(title__icontains=word) | Q(content__icontains=word) | Q(univ__name__contains=word) | Q(summary__name__contains=word) # Q 객체를 사용해서 검색한다.
         # title,context 칼럼에 대소문자를 구분하지 않고 단어가 포함되어있는지 (icontains) 검사
         ).distinct()
         context = {}
