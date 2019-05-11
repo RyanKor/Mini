@@ -1,11 +1,23 @@
-/* "전체디테일화면" */
-.alldisplay{
-    margin: 10px auto;
-    align-content: center;
+/* 전체 */
+.wrap{
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-template-rows: 600px;
+    margin: 0px 100px;
 }
+
+/* 게시물블록 */
+.alldisplay{
+    border: 1px solid rgba(220, 220, 220, 0.822);
+    margin: 50px;
+    padding: 30px;
+    border-radius: 0.5%;
+    overflow: hidden;
+}
+
 /* "게시물머리" */
 .head{
-
+    padding: 10px;
 }
 
 /* "제목" */
@@ -14,31 +26,47 @@
 }
 
 /* "글쓴이 게시시간" */
-.usernametime{
 
+.time{
+    text-align: right;
 }
 
 /* "게시물전체" */
 .content{
-
+    padding: 10px;
+    text-align: center;
+    
 }
+
+.img{
+    border-top: 1px solid rgba(220, 220, 220, 0.822);
+    border-bottom: 1px solid rgba(220, 220, 220, 0.822);
+}
+
 
 /* "버튼들" */
 .buttons{
-
+    padding: 10px;
+    text-align: center;
 }
 
 /* "댓글전체" */
-.commentform{
-
+.commentform{    
+    margin: 50px;
+    align-content: center;
+    border: 1px solid rgba(220, 220, 220, 0.822);
+    padding: 30px;
+    border-radius: 0.5%;
+    overflow: hidden;
 }
 
 /* "댓글창" */
 .commentlist{
-
+    border: 1px solid rgba(220, 220, 220, 0.822);
+    margin: 10px;
 }
 
 /* "댓글남기기" */
 .comment{
-    
+    margin: 10px
 }
