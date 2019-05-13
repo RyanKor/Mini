@@ -35,9 +35,10 @@ ul{
 }
 
 .category-intro{
-    grid-column-start: 1;
-    grid-column-end: 4;
-    padding: 20px;
+    grid-column-start: ;
+    grid-column-end: 4; */
+    padding: 2000px;
+
 }
 
 .detailcontents{

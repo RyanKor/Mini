@@ -8,97 +8,20 @@
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'home.css' %}">
     <title>home</title>
-    <style>
-        h1 h2 h3 h4 h5 {
-            
-        }
-        body {
-            margin:0 ;
-            padding : 0;
-        }
-        /* bbom */
-        #bbom {
-            width: 100%;
-            height: 743px;
-            margin: 0;
-            padding: 0;
-            border-radius: 0px 0px 80px 80px;
-            background-image: radial-gradient(circle at 0 45%, #ffffff, #f58d8f 24%, #e45356 62%, #9b1414);
-
-        }
-        /* //bbom */
-
-        /* navbar */
-        .navbar {
-            padding: 30px ;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            width: 197px;
-            height: auto;
-        }
-
-        .searchbar {
-            padding: 5px 250px 3px 25px;
-            margin: 0;
-            background-color: white;
-            border: 1px solid black;
-            width: 250px;
-            height: 22px;
-            border-radius: 5px;
-            box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
-            background-color: #ffffff;
-        }
-
-        .right {
-            display: flex;
-            flex-direction: row;
-            padding: 0px 0px 0px 100px;
-        }
-
-        .right1 {
-            padding: 4px;
-        }
-        /* //navbar */
-
-        /* intro */
-        .intro {
-            
-        }
-
-        .bigger {
-
-        }
-
-        .intro {
-
-        }
-
-        .team3 {
-
-        }
-        /* //intro */
-            
-    </style>
 </head>
 <body>
     <div id="bbom">
         <!-- navbar -->
         <div class="navbar">
             <div class="logo">
-                <img class="logo" src="file:///Users/choijuwon/Desktop/bbom.png" alt="">
+                <img class="logo" src="{% static 'bbom.png' %}" alt="logo">
             </div>
-            <!--  -->
-            <form action="." method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }} <!-- form -->
-            </form>
-           
-            <!--  -->
+                <div class="search">
+                    <img class="searchicon" src="{% static 'searchbbom.png' %}" alt="searchicon">
+                    <div>필요한 물품, 식량 검색</div>
+                </div>
             <div class="right">
-                <h6 class="right1"><a href="#">HOME</a></h6>
+                <h6 class="right1"><a href="{% url 'home'%}">HOME</a></h6>
                 <h6 class="right1"><a href="#">고객센터</a></h6>
                 <h6 class="right1"><a href="{% url 'signup'%}">회원가입</a></h6>
                 <h6 class="right1"><a href="{% url 'login'%}">로그인</a></h6>
@@ -107,81 +30,86 @@
         <!-- //navbar -->
     
         <!-- intro -->
-        <div class="intro">
-            <div class="logo bigger">
-                <h1><img src="" alt=""></h1>
-            </div>
-            <div class="intro">
-                <h2>본격 안암 자취생 구제 프로젝트</h2>
-                <h2 class="opacity-intro">안암 자취생 구제 프로젝트</h2>
-            </div>
-            <div class="team3">
-                <p>고려대학교 NEXT X 멋쟁이사자처럼 미니해커톤 TEAM 3</p>
-            </div>
+        <div class="bigger">
+            <h1><img class="bigger" src="{% static 'bigbbom.png' %}" alt="biglogo"></h1>
         </div>
+        <h2 class="intro">본격 안암 자취생 구제 프로젝트</h2>
+        <h2 class="opacity-intro">안암 자취생 구제 프로젝트</h2>
+        <a href="{% url 'new'%}">
+                <div class="button">
+                        <div class="up">올리기</div>
+                    </div>
+                    
+        </a>
+        <p class="teamname">고려대학교 NEXT X 멋쟁이사자처럼 미니해커톤 TEAM 3</p>
         <!-- //intro -->
     </div>
     
-    <!-- bigcategory -->
-    <div class="bigcategory">
-        {% if object_list %} 
-        {% for post in object_list %} 
-        <div class="category" style="position: relative; width: 400px;">
-            <div class="rectangle">
-                <a href="{% url 'detail' post.pk %}" style="color:black;">{{ post.title }}</a>
-            </div>
-        </div> 
-        {% endfor %} 
-        {% elif search_word %} 
-              Search Word {{ search_word }} Not Found!
-        {% else %}
-        <!-- <a href=""> -->
-            <div class="category">
-                <div class="rectangle">
-                    <img src="" alt="">
-                    <p class="category-intro">혼자 사면 비싼 생필품, 혼자가 아니라면?</p>
-                    <p class="category-name">생필품</p>
-                </div>
-            </div> 
-        </a>
-        
-        <!-- <a href=""> -->
-            <div class="category">
-                    <div class="rectangle">
-                        <img src="" alt="">
-                        <p class="category-intro">혼자 먹기 버거운 야식, 혼자가 아니라면?</p>
-                        <p class="category-name">야식</p>
-                    </div>
-            </div>
-        </a>
-
-        <!-- <a href=""> -->
-            <div class="category">
-                    <div class="rectangle">
-                        <img src="" alt="">
-                        <p class="category-intro">혼자 사면 넘쳐나는 식재료, 혼자가 아니라면?</p>
-                        <p class="category-name">식재료</p>
-                    </div>
-            </div>
-        </a>
-
-        <div class="category">
-            <div class="rectangle">
-                <img src="" alt="">
-                <p class="category-intro">혼자 사면 많은 간식, 혼자가 아니라면?</p>
-                <p class="category-name">간식</p>
-            </div>
-        </div>
-
-        <div class="category">
-            <div class="rectangle">
-                <img src="" alt="">
-                <p class="category-intro">한번 쓰고 버리기 아까운 것들, 나눌 수 있다면?</p>
-                <p class="category-name">다시쓰기</p>
-            </div>
+    <div class="category-intro">
+        <div class="category-intro">
+            <div class="vertical-rec"></div>
+            <div class="cintro">아나뿜다와 뿜빠이 할 수 있는 목록</div>
         </div>
     </div>
+    <div class="cintro2">혼자 사면 비싸고 많지만, 뿜빠이 한다면?</div>
+    
+
+    <!-- bigcategory -->
+    <div class="bigcategory">
+        {% for c in categories %}
+        {% if forloop.first %}
+            <a href="{{c.get_absolute_url}}">
+                <div class="rectangle">
+                        <div class="contents">
+                            <img class="images" src="{% static '3.png'%}" alt="material">
+                            <div class="category-intro2">혼자 사면 비싼 생필품, 혼자가 아니라면?</div>
+                            <div class="category-name">생필품</div>
+                        </div>
+                    </div> 
+                    
+            </a>
+        {% endif %}
+        {% endfor %}
+            <a href="{% url 'menu_list' %}">
+                    <div class="rectangle">
+                            <div class="contents">
+                                <img class="images" src="{% static '2.jpg' %}" alt="foods">
+                                <div class="category-intro2">혼자 먹기 버거운 야식, 혼자가 아니라면?</div>
+                                <div class="category-name">야식</div>
+                            </div>
+                        </div>
+            
+            </a>
+            
+        {% for c in categories %}
+        {% if forloop.last %}
+            <a href="{{c.get_absolute_url}}">
+            <div class="rectangle">
+                <div class="contents">
+                    <img class="images" src="{% static '1.png' %}" alt="material">
+                    <div class="category-intro2">혼자 사면 넘쳐나는 식재료, 혼자가 아니라면?</div>
+                    <div class="category-name">식재료</div>
+                </div>
+            </div>
+            </a>
+        {% endif %}
+        {% endfor %}
+
+        <div class="rectangle">
+            <div class="contents">
+                <img class="images" src="{% static '4.png' %}" alt="snack">
+                <div class="category-intro2">혼자 사면 많은 간식, 혼자가 아니라면?</div>
+                <div class="category-name">간식</div>
+            </div>
+            
+        </div>
+
+    </div>
     <!-- //bigcategroy -->
-    {% endif %}
+    {% comment %} {% for p in posts %}
+        <li>
+            <a href="{% url 'detail' post.pk %}">{{p.title}}</a>
+        </li>
+    {% endfor %} {% endcomment %}
 </body>
 </html>

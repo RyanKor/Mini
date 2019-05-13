@@ -7,14 +7,14 @@ class PostForms(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'category', 'menu', 'univ', 'summary',)
+        fields = ['title', 'content', 'category', 'menu', 'univ', 'summary']
         widgets = {
-            'title' : forms.TextInput(attrs = {'placeholder':'입력해주세요'}),
+            'title' : forms.TextInput(attrs={'placeholder':'입력해주세요'}),
         }
         labels = {
             'title' : '',
             'content' : '',
-            
+            'category' : '',
         }
 
     def __init__(self, *args, **kwargs):
@@ -28,7 +28,7 @@ class PostForms(forms.ModelForm):
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
-            self.fields['summary'].queryset = self.instance.univ.summary_set.order_by('name')
+            self.fields['summary'].queryset = self.instance.univ.summary_set.order_by('title')
 
 #댓글 형성 Form
 class CommentForms(forms.ModelForm):
@@ -42,6 +42,3 @@ class UserForms(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
-
-class SearchForm(forms.Form):
-     word = forms.CharField(label='')

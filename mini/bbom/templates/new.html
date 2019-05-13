@@ -1,6 +1,30 @@
-{% extends "category-food.html" %}
-{% load staticfiles %}
-    {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'new.css'%}">
+  <link rel="stylesheet" href="{% static 'category-food.css' %}">
+</head>
+<body>
+    <div id="navbar-fixed">
+        <div class="logo">
+            <!-- <img class="logo" src="{% static 'bbom.png' %}" alt="logo"> -->
+            <img class="logo" src="{% static 'bbom.png'%}" alt="logo">
+        </div>
+                <!-- <img class="searchicon" src="{% static 'searchbbom.png' %}" alt="searchicon"> -->
+                
+                <div  class="search" ><img class="searchicon" src="{% static 'searchbbom.png'%}" alt="searchicon">필요한 물품, 식량 검색</div>
+        <div class="right">
+            <h6 class="right1"><a href="#">HOME</a></h6>
+            <h6 class="right1"><a href="#">고객센터</a></h6>
+            <h6 class="right1"><a href="{% url 'signup'%}">회원가입</a></h6>
+            <h6 class="right1"><a href="{% url 'login'%}">로그인</a></h6>
+        </div>
+    </div>
     <div class="alldisplay">
         <h3 style="font-weight:bold">새로운 뿜빠이</h3>
         <form method="POST" id="postForm" data-summaries-url="{% url 'ajax_load_summaries' %}" enctype="multipart/form-data" novalidate>
@@ -29,4 +53,6 @@
     });
     </script>
     </div>
-    {% endblock %}
+</body>
+</html>
+  

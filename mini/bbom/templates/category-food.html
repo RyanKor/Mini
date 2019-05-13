@@ -6,176 +6,216 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-    <link rel="stylesheet" href="{%static 'category.css'%}">
-    <link rel="stylesheet" href="{%static 'detail.css'%}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'category-food.css'%}">
     <link rel="stylesheet" href="{%static 'thumbnails.css'%}">
-    <link rel="stylesheet" href="{%static 'new.css'%}">
-    <link rel="stylesheet" href="{%static 'edit.css'%}">
-    <link rel="stylesheet" href="{%static 'login.css'%}">
-    <link rel="stylesheet" href="{%static 'signup.css'%}">
     <title>category</title>
 </head>
 <body>
     <!-- navbar-fixed -->
+    <!-- <div id="navbar-fixed">
+    </div> -->
     <div id="navbar-fixed">
-        <div class="logo">
-            <h5>아나뿜다:</h5>
-            <h5>아껴쓰고, 나눠쓰고, 뿜빠이하고, 다시쓰고</h5>
-        </div>
-        <div class="searchbar">
-            <h5>필요한 물품, 식량 검색</h5>
-        </div>
+        <a href="{% url 'home' %}">
+            <div class="logo">
+                <!-- <img class="logo" src="{% static 'bbom.png' %}" alt="logo"> -->
+                <img class="logo" src="{% static 'bbom.png'%}" alt="logo">
+            </div>
+        </a>    
+                <!-- <img class="searchicon" src="{% static 'searchbbom.png' %}" alt="searchicon"> -->
+                
+                <div  class="search" ><img class="searchicon" src="{% static 'searchbbom.png'%}" alt="searchicon">필요한 물품, 식량 검색</div>
         <div class="right">
-            <h6>HOME</h6>
-            <h6>고객센터</h6>
-            <h6>회원가입</h6>
-            <h6>로그인</h6>
+            <h6 class="right1"><a href="{% url 'home' %}">HOME</a></h6>
+            <h6 class="right1"><a href="#">고객센터</a></h6>
+            <h6 class="right1"><a href="{% url 'signup'%}">회원가입</a></h6>
+            <h6 class="right1"><a href="{% url 'login'%}">로그인</a></h6>
         </div>
     </div>
     <!-- //navbar-fixed -->
-
     <!-- check -->
+    <div class="line"></div>
     <div class="check">
-        <div class="check-box">
-            <p>인원</p>
-        </div>
-        <div class="check-box">
-            <p>위치</p>
-        </div>
-        <div class="check-box">
-            <p>가격</p>
-        </div>
-        <div class="check-box-longer">
-            <p>필터 추가하기</p>
-        </div>
+        <div class="check-box">인원</div>
+        <div class="check-box">위치</div>
+        <div class="check-box">가격</div>
+        <div class="check-box">필터 추가하기</div>
     </div>
+    <div class="line"></div>
     <!-- //check -->
-    {% block content %}
     <div class="categories">
-        <div class="vertical-rec"></div>
-        <div class="category-intro">
-            <h4>아나뿜다와 뿜빠이 할 수 있는</h4>
-            <h2>야식</h2>
-            <h6>혼자 사면 비싸고 많지만, 뿜빠이 한다면?</h6>
+       
+                <div class="category-intro">
+                        <div class="vertical-rec"></div>
+                        <div class="cintro">아나뿜다와 뿜빠이 할 수 있는</div> 
+                        <div class="cintro-big">야식</div> 
+                </div>
+                <div class="cintro2">혼자 사면 비싸고 많지만, 뿜빠이 한다면?</div>
+        
+        <div class="sayhello">
+                <div class="categories-two">
+                        <div class="menu-rec">
+                            <div class="menu-rec-in">
+                                <div class="menu">MENU</div>
+                                <div class="small-line"></div>
+                                <div class="menu-items">
+                                {% for m in menus %}
+                                    <a href="{{m.get_absolute_url}}">
+                                        <div class="color-rec">
+                                            <div class="items-title">{{m.name}}</div>
+                                        </div>
+                                    </a>                    
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sayhi">
+                    {% for l in menulist %}
+                        <a href="{% url 'detail' l.pk %}">
+                            <div class="categories-rec">
+                                <div class="title">
+                                    {{l.title}}
+                                    {{l.author}}
+                                    {{l.univ}}
+                                    {{l.summary}}
+                                </div>
+                                <div class="hashtags">
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                    </div>
         </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>피자먹자</p>
-                <p>피자</p>
-            </div>
-            <div class="hashtags">
-                <p>#피자헛</p>
-                <p>#도미노피자</p>
-                <p>#피자에땅</p>
-                <p>#수제피자</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>치킨먹자</p>
-                <p>치킨</p>
-            </div>
-            <div class="hashtags">
-                <p>#BBQ</p>
-                <p>#수원왕갈비통닭</p>
-                <p>#뿌링클</p>
-                <p>#네네치킨</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>보쌈먹자</p>
-                <p>보쌈</p>
-            </div>
-            <div class="hashtags">
-                <p>#놀부보쌈</p>
-                <p>#보쌈뽀쌈</p>
-                <p>#보쌈친구들</p>
-                <p>#보쌈먹어요</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>떡볶이 먹읍시다</p>
-                <p>떡볶이</p>
-            </div>
-            <div class="hashtags">
-                <p>#피자헛</p>
-                <p>#도미노피자</p>
-                <p>#피자에땅</p>
-                <p>#수제피자</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>족발 한발?</p>
-                <p>족발</p>
-            </div>
-            <div class="hashtags">
-                <p>#피자헛</p>
-                <p>#도미노피자</p>
-                <p>#피자에땅</p>
-                <p>#수제피자</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>닭발 먹자</p>
-                <p>닭발</p>
-            </div>
-            <div class="hashtags">
-                <p>#피자헛</p>
-                <p>#도미노피자</p>
-                <p>#피자에땅</p>
-                <p>#수제피자</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>삼겹살 같이먹을까?</p>
-                <p>삼겹살</p>
-            </div>
-            <div class="hashtags">
-                <p>#삼겹살 굽기</p>
-                <p>#오겹살 굽기</p>
-                <p>#하남돼지집</p>
-                <p>#소고기</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>마라샹궈 하나..?</p>
-                <p>마라샹궈</p>
-            </div>
-            <div class="hashtags">
-                <p>#마라탕</p>
-                <p>#마라샹궈 맛집</p>
-                <p>#마라</p>
-                <p>#마라마라</p>
-            </div>
-        </div>
-        <div class="categories-rec">
-            <img src="#" alt="">
-            <div class="title">
-                <p>찜닭 찌자</p>
-                <p>찜닭</p>
-            </div>
-            <div class="hashtags">
-                <p>#안동찜닭</p>
-                <p>#내가 찜한 닭</p>
-                <p>#꼬꼬아찌</p>
-                <p>#수제피자</p>
-            </div>
-        </div>
-        {% endblock %}
+        
+
+        <!-- <div class="categories-two">
+                <div class="menu-rec">
+                        <div class="menu-rec-in">
+                                <div class="menu">MENU</div>
+                                <div class="small-line"></div>
+                                <div class="menu-items">
+                                
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec"> 
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                    <div class="color-rec">
+                                        <div class="items-intro"></div>
+                                        <div class="items-title"></div>
+                                    </div>
+                                 
+                            
+                                </div>
+                        </div>
+                        
+                    </div>
+                    <div class="categories-recs">
+                            <div class="categories-rec">
+                                <img src="#" alt="">
+                                <div class="title">
+                                    피자
+                                </div>
+                                <div class="hashtags">
+                                </div>
+                            </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                        치킨
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                        보쌈
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                        떡볶이
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+
+                                        족발
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                      
+                                        닭발
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                        
+                                        삼겹살
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                       
+                                        마라샹궈
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                                <div class="categories-rec">
+                                    <img src="#" alt="">
+                                    <div class="title">
+                                        찜닭
+                                    </div>
+                                    <div class="hashtags">
+                                    </div>
+                                </div>
+                    </div> -->
+                    
+        </div> 
+
     </div>
 </body>
 </html>

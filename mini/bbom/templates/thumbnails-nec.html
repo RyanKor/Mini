@@ -1,33 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'category-food.css'%}?ver=1">
+    <link rel="stylesheet" href="{%static 'thumbnails.css'%}?ver=1">
+    <style>
+        .category-intro {
+            display: flex;
+        }
 
-    {% extends 'category_food.html' %}
-    {% block content %}
-    <div class="wraptotal">
-            <div class="menubar">
-                <ul>
-                    <li>
-                        <a href="{% url 'product_list' %}">productlist</a>
-                    </li>
-                    {% for c in categories %}
-                        <li>
-                            <a href="{{c.get_absolute_url}}">{{c.name}}</a>
-                        </li>
-                    {% endfor %}
-                    {% if request.get_full_path == "/Food/" %}
-                        {% for m in menus %}
-                            <li>
-                                <a href="{{m.get_absolute_url}}">{{m.name}}</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
-                </ul>
+    
+    </style>
+    
+</head>
+<body>
+        <div id="navbar-fixed">
+                <div class="logo">
+                    <!-- <img class="logo" src="{% static 'bbom.png' %}" alt="logo"> -->
+                    <img class="logo" src="{% static 'bbom.png'%}" alt="logo">
+                </div>
+                        <!-- <img class="searchicon" src="{% static 'searchbbom.png' %}" alt="searchicon"> -->
+                        
+                        <div  class="search" ><img class="searchicon" src="{% static 'searchbbom.png'%}" alt="searchicon">필요한 물품, 식량 검색</div>
+                <div class="right">
+                    <h6 class="right1"><a href="#">HOME</a></h6>
+                    <h6 class="right1"><a href="#">고객센터</a></h6>
+                    <h6 class="right1"><a href="{% url 'signup'%}">회원가입</a></h6>
+                    <h6 class="right1"><a href="{% url 'login'%}">로그인</a></h6>
+                </div>
             </div>
 
+
+        {% if request.get_full_path == "/Nec/" %}
+        <div class="contentlist">
+                <div class="category-top">
+                <div class="category-intro">
+                        <div class="vertical-rec"></div>
+                        <div class="cintro">아나뿜다와 뿜빠이 할 수 있는</div> 
+                        <div class="cintro-big">야식</div> 
+                </div>
+                <div class="cintro2">혼자 사면 비싸고 많지만, 뿜빠이 한다면?</div>
+        </div>
+                <div class="detailcontents">
+                    {% for p in products %}
+                        <a href="{% url 'detail' p.pk %}">{{p.title}}</a>
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        
+        {% if request.get_full_path == "/Food/" %}
+        <div class="line"></div>
+        <div class="check">
+            <div class="check-box">인원</div>
+            <div class="check-box">위치</div>
+            <div class="check-box">가격</div>
+            <div class="check-box">필터 추가하기</div>
+        </div>
+        <div class="line"></div>
+        <!-- //check -->
+        <div class="categories">
+       
+            <div class="category-intro">
+                <div class="vertical-rec"></div>
+                <div class="cintro">아나뿜다와 뿜빠이 할 수 있는</div> 
+                <div class="cintro-big">야식</div> 
+            </div>
+            <div class="cintro2">혼자 사면 비싸고 많지만, 뿜빠이 한다면?</div>
+        
+        
+            <div class="categories-two">
+                <div class="menu-rec">
+                    <div class="menu-rec-in">
+                        <div class="menu">MENU</div>
+                        <div class="small-line"></div>
+                        <div class="menu-items">
+                        {% if request.get_full_path == "/Food/" %}
+                        {% for m in menus %}
+                            <a href="{{m.get_absolute_url}}">
+                                <div class="color-rec">
+                                    <div class="items-title">{{m.name}}</div>
+                                </div>
+                            </a>                    
+                        {% endfor %}
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="sayhi">
+        {% for p in products %}
+            <a href="{% url 'detail' p.pk %}">
+                <div class="categories-rec">
+                    <div class="title">
+                        {{p.title}}
+                        {{p.autor}}
+                        {{p.univ}}
+                        {{p.summary}}
+                    </div>
+                    <div class="hashtags">
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {% if request.get_full_path == "/Material/" %}
             <div class="contentlist">
                 <div class="vertical-rec"></div>
                 <!-- category-intro -->
                 <div class="category-intro">
                     <h4>아나뿜다와 뿜빠이 할 수 있는</h4>
-                    <h2>생필품</h2>
+                    <h2>식재료</h2>
                     <h6>혼자 사면 비싸고 많지만, 뿜빠이 한다면?</h6>
                 </div>
                 <div class="detailcontents">
@@ -37,131 +129,10 @@
                 </div>
             </div>
         </div>
-        <!-- //category-intro -->
-
-        <!-- <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">방금전</h5>
-            <h3 class="title">쌀 같이 나눠 가실분 구합니다</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #쌀
-                #혼자는 많아요
-                #백미
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">5분 전</h5>
-            <h3 class="title">휴지 나눠 가지실분</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #반띵해요
-                #세명도 괜찮
-                #혼자많아요
-                #나눠가집시다
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">5분전</h5>
-            <h3 class="title">샴푸 대량으로 사서 나눠가지실분</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #샴푸
-                #2+2
-                #반띵해요
-                #혼자쓰기 많아요
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">6분전</h5>
-            <h3 class="title">치약 대량 구매</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #치약
-                #치약 3+3
-                #치약치약
-                #페리오
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">10분전</h5>
-            <h3 class="title">세제 공동구매 해요</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #세제
-                #세제 언제 다써
-                #곧 마감 되어요
-                #나눠가져요
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">10분전</h5>
-            <h3 class="title">섬유유연제 나눠 가지실분</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #섬유유연제
-                #냄새좋음
-                #곧 마감 되어요
-                #혼자쓰기 많아요
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">15분전</h5>
-            <h3 class="title">칫솔 공동구매</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #칫솔
-                #10개 
-                #반띵
-                #혼자 다못써요
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">15분전</h5>
-            <h3 class="title">쌀 좀 나눠 가지자</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #쌀
-                #쌀쌀해요
-                #현미 백미
-                #혼자먹기 많아요
-            </div>
-        </div>
-        <div class="contents">
-            <img src="#" alt="">
-            <h5 class="times">20분전</h5>
-            <h3 class="title">샴푸 나눠 가집시다</h3>
-            <div class="participated">
-                <img src="#" alt="">
-            </div>
-            <div class="hashtags">
-                #샴푸
-                #샴푸너무 많은데
-                #곧 마감 되어요
-                #혼자 다 못써요
-            </div>
-        </div> -->
-    {% endblock %}
+        {% endif %}
+    
+                
+           
+</body>
+</html>
+    

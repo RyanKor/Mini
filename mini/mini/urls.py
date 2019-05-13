@@ -17,11 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from bbom import views
-from bbom.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', SearchFormView.as_view(), name='home'),
+    path('', views.home, name='home'),
     path('new/', views.new, name='new'),
     path('detail/<int:post_pk>/', views.detail, name='detail'),
     path('edit/<int:post_pk>/', views.edit, name = 'edit'),
@@ -33,6 +32,5 @@ urlpatterns = [
     url(r'^(?P<category_slug>[-\w]+)/$', views.product_list, name='product_list_by_category'),
     url(r'^Food/(?P<menu_slug>[-\w]+)/$', views.menu_list, name='product_list_by_menu'),
     url(r'^Food/$', views.menu_list, name='menu_list'),
-    path('ajax/load-summaries/', views.load_summaries, name='ajax_load_summaries'),
-    url(r'^hey/search/$', SearchFormView.as_view(), name='search'),
+    path('ajax/load-summaries/', views.load_summaries, name='ajax_load_summaries')
 ]
